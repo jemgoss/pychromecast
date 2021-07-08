@@ -641,51 +641,6 @@ class CastBrowser:
         self.host_browser.join()
 
 
-class CastListener(CastBrowser):
-    """Backwards compatible helper class.
-
-    Deprecated as of February 2021, will be removed in June 2024.
-    """
-
-    def __init__(
-        self,
-        add_callback: Callable[[UUID, str], None] | None = None,
-        remove_callback: Callable[[UUID, str, CastInfo], None] | None = None,
-        update_callback: Callable[[UUID, str], None] | None = None,
-    ):
-        _LOGGER.info(
-            "CastListener is deprecated and will be removed in June 2024, update to use CastBrowser instead"
-        )
-        listener = SimpleCastListener(add_callback, remove_callback, update_callback)
-        super().__init__(listener)
-
-
-def start_discovery(
-    cast_browser: CastBrowser, zeroconf_instance: zeroconf.Zeroconf
-) -> CastBrowser:
-    """Start discovering chromecasts on the network.
-
-    Deprecated as of February 2021, will be removed in June 2024.
-    """
-    _LOGGER.info(
-        "start_discovery is deprecated and will be removed in June 2024, call CastBrowser.start_discovery() instead"
-    )
-    cast_browser.set_zeroconf_instance(zeroconf_instance)
-    cast_browser.start_discovery()
-    return cast_browser
-
-
-def stop_discovery(cast_browser: CastBrowser) -> None:
-    """Stop the chromecast discovery threads.
-
-    Deprecated as of February 2021, will be removed in June 2024.
-    """
-    _LOGGER.info(
-        "stop_discovery is deprecated and will be removed in June 2024, call CastBrowser.stop_discovery() instead"
-    )
-    cast_browser.stop_discovery()
-
-
 def discover_chromecasts(
     max_devices: int | None = None,
     timeout: float = DISCOVER_TIMEOUT,

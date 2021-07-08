@@ -26,6 +26,14 @@ PyChromecast depends on the Python packages requests, protobuf and
 zeroconf. Make sure you have these dependencies installed using
 ``pip install -r requirements.txt``
 
+How to build
+------------
+
+$ python -m venv ~/venv
+$ ~/venv/bin/pip install wheel
+$ ~/venv/bin/pip install -r requirements.txt
+$ ~/venv/bin/pip wheel -w dist --no-deps .
+
 How to use
 ----------
 

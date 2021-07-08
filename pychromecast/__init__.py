@@ -20,11 +20,8 @@ from . import socket_client
 from .discovery import (  # noqa: F401
     DISCOVER_TIMEOUT,
     CastBrowser,
-    CastListener,  # Deprecated
     SimpleCastListener,
     discover_chromecasts,
-    start_discovery,
-    stop_discovery,
 )
 from .dial import get_cast_type
 from .const import CAST_TYPE_CHROMECAST, REQUEST_TIMEOUT
@@ -300,10 +297,10 @@ class Chromecast(CastStatusListener):
     :param retry_wait: A floating point number specifying how many seconds to
                        wait between each retry. None means to use the default
                        which is 5 seconds.
-    :param zconf: A zeroconf instance, needed if a the services if cast info includes
+    :param zconf: A zeroconf instance, needed if the services of cast info includes
                   mDNS services.
-                  The zeroconf instance may be obtained from the browser returned by
-                  pychromecast.start_discovery().
+                  The zeroconf instance may be obtained from the browser as
+                  browser.zc.
     """
 
     def __init__(
@@ -487,7 +484,7 @@ class Chromecast(CastStatusListener):
     def wait(self, timeout: float | None = None) -> None:
         """
         Waits until the cast device is ready for communication. The device
-        is ready as soon a status message has been received.
+        is ready as soon as a status message has been received.
 
         If the worker thread is not already running, it will be started.
 
